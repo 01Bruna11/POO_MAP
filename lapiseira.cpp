@@ -45,6 +45,21 @@ struct Lapiseira {
         }
         return std::exchange(this->grafite, nullptr);
     }
+    Grafite* quebraGrafite() {
+        if(this->grafite == nullptr) {
+            std::cout << "Nao tem grafite\n";
+            return nullptr;
+        }
+        this->grafite->tamanho /= 2;
+        return this->grafite;
+    }
+    bool grafiteEstaCompleto() {
+        if(this->grafite == nullptr) {
+            std::cout << "Cheio\n";
+            return false;
+        }
+        return this->grafite->tamanho == this->calibre;
+    }
 };
 
 int main(void) 
@@ -55,6 +70,8 @@ int main(void)
     lapiseira.grafite->tamanho -= 5;
     std::cout << grafite.tamanho << "\n";
     std::cout << lapiseira.grafite->tamanho << "\n";
+    std::cout << lapiseira.grafiteEstaCompleto() << "\n";
+    std::cout << lapiseira.quebraGrafite()->tamanho << "\n";
 
     return 0;
 
